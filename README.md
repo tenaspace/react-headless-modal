@@ -4,7 +4,7 @@ This is an unstyled React component helping you to easy to make the Modal with y
 
 ## Demo
 
-Coming soon...
+See the [DEMO](https://react-package.tenaspace.com/react-headless-modal)
 
 ## Installation
 
