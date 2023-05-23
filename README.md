@@ -235,8 +235,8 @@ export default App
 | clickOutsideToClose | optional | boolean | true | HeadlessModal | Enable / Disable closing the Modal when clicking outside the Modal panel |
 | container | optional | Element `|` DocumentFragment | document.body | HeadlessModal | The Modal will be rendered with the parent is `<body>` by default. You can choose the place where you want the Modal rendered by setting the Element to this props |
 | id | optional | string `|` null `|` undefined | undefined | HeadlessModal | A unique string or number to be used as the Modal's key |
-| enter | optional | { <br />className?: string `|` null; <br />style?: React.CSSProperties <br />} | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on open (You can set the CSS using class or style inline) |
-| leave | optional | { <br />className?: string `|` null; <br />style?: React.CSSProperties <br />} | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on close (You can set the CSS using class or style inline) |
+| enter | optional | { className?: string `|` null; style?: React.CSSProperties } | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on open (You can set the CSS using class or style inline) |
+| leave | optional | { className?: string `|` null; style?: React.CSSProperties } | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on close (You can set the CSS using class or style inline) |
 | as | optional | React.ElementType | div | All | Set the tag HTML like whatever you want |
 | className | optional | string | null | All |  |
 | style | optional | React.CSSProperties | {} | All |  |
