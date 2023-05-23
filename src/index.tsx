@@ -74,7 +74,7 @@ const ContextModal = createContext<IContextIHeadlessModal>({
   open: false,
   isOpened: false,
   onClose: () => {},
-  clickOutsideToClose: false,
+  clickOutsideToClose: true,
   transitionDurationBackdrop: TRANSITION_DURATION_DEFAULT,
   transitionDurationPanel: TRANSITION_DURATION_DEFAULT,
 })
@@ -95,7 +95,7 @@ const Modal = ({
   style = {},
   open,
   onClose,
-  clickOutsideToClose,
+  clickOutsideToClose = true,
   container,
   id,
 }: IHeadlessModal) => {
@@ -181,7 +181,14 @@ export interface IHeadlessModalBackdrop extends ICommon, ITransition {
   children?: ReactNode
 }
 
-const Backdrop = ({ children, as = `div`, className = null, style = {}, enter, leave }: IHeadlessModalBackdrop) => {
+const Backdrop = ({
+  children,
+  as = `div`,
+  className = null,
+  style = {},
+  enter = {},
+  leave = {},
+}: IHeadlessModalBackdrop) => {
   const As = as
 
   const { open, setTransitionDurationBackdrop } = useContext(ContextModal)
@@ -228,7 +235,7 @@ export interface IHeadlessModalPanel extends ICommon, ITransition {
   children: ({ isOpened }: { isOpened?: IContextIHeadlessModal[`isOpened`] }) => ReactNode
 }
 
-const Panel = ({ children, as = `div`, className = null, style = {}, enter, leave }: IHeadlessModalPanel) => {
+const Panel = ({ children, as = `div`, className = null, style = {}, enter = {}, leave = {} }: IHeadlessModalPanel) => {
   const As = as
 
   const { open, isOpened, onClose, clickOutsideToClose, setTransitionDurationPanel } = useContext(ContextModal)
@@ -237,7 +244,7 @@ const Panel = ({ children, as = `div`, className = null, style = {}, enter, leav
 
   const ref = useRef<HTMLElement | null>(null)
 
-  useOnClickOutside(ref, clickOutsideToClose ? () => {} : onClose)
+  useOnClickOutside(ref, clickOutsideToClose ? onClose : () => {})
 
   useEffect(() => {
     if (isClient) {

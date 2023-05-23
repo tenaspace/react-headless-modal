@@ -32,11 +32,13 @@ describe('Common render', () => {
             enter={{
               style: {
                 opacity: 1,
+                transitionTimingFunction: `cubic-bezier(0, 0, 0.2, 1)`,
               },
             }}
             leave={{
               style: {
                 opacity: 0,
+                transitionTimingFunction: `cubic-bezier(0.4, 0, 1, 1)`,
               },
             }}
           />
@@ -78,26 +80,47 @@ describe('Common render', () => {
                   style: {
                     opacity: 1,
                     transform: `scale(1)`,
+                    transitionTimingFunction: `cubic-bezier(0, 0, 0.2, 1)`,
                   },
                 }}
                 leave={{
                   style: {
                     opacity: 0,
                     transform: `scale(0.95)`,
+                    transitionTimingFunction: `cubic-bezier(0.4, 0, 1, 1)`,
                   },
                 }}
               >
                 {({ isOpened }) =>
                   isOpened ? (
                     <div>
-                      <h3 style={{ fontWeight: 700, marginBottom: `12px` }}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit
+                      <h3
+                        style={{
+                          fontWeight: 700,
+                          margin: `0 0 12px 0`,
+                          fontSize: `20px`,
+                          lineHeight: `28px`,
+                        }}
+                      >
+                        Lorem ipsum dolor sit amet
                       </h3>
-                      <p>
-                        Et consequatur, ea inventore, quam modi eius facilis vitae neque saepe enim dolorum voluptatibus
-                        nulla rerum pariatur doloribus nihil consectetur maxime qui!
+                      <p style={{ margin: `0 0 12px 0` }}>
+                        Consectetur adipisicing elit. Atque accusantium natus quidem dolore error dicta, quaerat nihil
+                        cupiditate assumenda magnam eum, quibusdam ipsam quo beatae fugit illo labore velit repellendus?
                       </p>
-                      <button style={{ marginBottom: `12px` }} onClick={handleClose}>
+                      <button
+                        style={{
+                          cursor: `pointer`,
+                          borderWidth: 0,
+                          borderRadius: `8px`,
+                          padding: `8px 16px`,
+                          fontSize: `14px`,
+                          lineHeight: `20px`,
+                          fontWeight: 500,
+                          backgroundColor: `rgb(243 244 246 / 1)`,
+                        }}
+                        onClick={handleClose}
+                      >
                         Close
                       </button>
                     </div>
