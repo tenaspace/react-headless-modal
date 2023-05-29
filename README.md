@@ -20,7 +20,7 @@ npm install @tenaspace/react-headless-modal
 
 ## Usage
 
-Example using with Tailwind CSS
+Example with [Tailwind CSS](https://tailwindcss.com/docs/installation) (Recommend)
 
 <details open>
 
@@ -93,7 +93,7 @@ export default App
 </details>
 
 
-Example using with Style inline
+Example with Style inline
 
 <details>
 
