@@ -37,7 +37,9 @@ const App = () => {
 
   return (
     <>
-      <button onClick={handleOpen}>Open Modal</button>
+      <button onClick={handleOpen} className={`bg-black px-5 py-2.5 text-white`}>
+        open
+      </button>
 
       <HeadlessModal open={open} onClose={handleClose} className={`relative z-[1055]`}>
         <HeadlessModal.Backdrop
@@ -50,9 +52,9 @@ const App = () => {
           }}
         />
         <div className={`fixed inset-0 overflow-y-auto overflow-x-hidden`}>
-          <div className={`flex min-h-full items-center justify-center p-4`}>
+          <div className={`flex min-h-full items-center justify-center p-3`}>
             <HeadlessModal.Panel
-              className={`mx-auto w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl transition duration-300`}
+              className={`mx-auto w-full max-w-md bg-white p-8 shadow-2xl transition duration-300`}
               enter={{
                 className: `scale-100 opacity-100 ease-out`,
               }}
@@ -60,18 +62,23 @@ const App = () => {
                 className: `scale-95 opacity-0 ease-in`,
               }}
             >
-              {({ isOpened }) => isOpened ? ( // This props will render/remove the Panel's content when the Modal open/close. If you don't want your Panel's content re-rendered, remove this props with the condition check.
-                <div className={`space-y-3`}>
-                  <h3 className={`text-xl font-bold`}>Lorem ipsum dolor sit amet</h3>
-                  <p>
-                    Consectetur adipisicing elit. Atque accusantium natus quidem dolore error dicta, quaerat nihil
-                    cupiditate assumenda magnam eum, quibusdam ipsam quo beatae fugit illo labore velit repellendus?
-                  </p>
-                  <button onClick={handleClose} className={`rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium`}>
-                    Close
-                  </button>
-                </div>
-              ) : null}
+              {({ isOpened }) =>
+                isOpened ? ( // This props will render/remove the Panel's content when the Modal open/close. If you don't want your Panel's content re-rendered, remove this props with the condition check.
+                  <div className={`space-y-4`}>
+                    <div>
+                      <h3 className={`mb-2 text-3xl font-bold`}>modal</h3>
+                      <p>
+                        lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ipsum perferendis! Quo
+                        omnis mollitia aperiam explicabo officia soluta, cumque, veritatis numquam doloribus distinctio
+                        quasi cum sed rerum nihil ipsa. Maxime?
+                      </p>
+                    </div>
+                    <button onClick={handleClose} className={`bg-black px-5 py-2.5 text-white`}>
+                      close
+                    </button>
+                  </div>
+                ) : null
+              }
             </HeadlessModal.Panel>
           </div>
         </div>
@@ -84,6 +91,7 @@ export default App
 ```
 
 </details>
+
 
 Example using with Style inline
 
@@ -102,7 +110,17 @@ const App = () => {
 
   return (
     <>
-      <button onClick={handleOpen}>Open Modal</button>
+      <button
+        onClick={handleOpen}
+        style={{
+          cursor: `pointer`,
+          backgroundColor: `black`,
+          padding: `10px 20px`,
+          color: `white`,
+        }}
+      >
+        Open Modal
+      </button>
 
       <HeadlessModal open={open} onClose={handleClose} style={{ position: `relative`, zIndex: 1055 }}>
         <HeadlessModal.Backdrop
@@ -143,21 +161,18 @@ const App = () => {
           <div
             style={{
               display: `flex`,
+              minHeight: `100%`,
               alignItems: `center`,
               justifyContent: `center`,
-              minHeight: `100%`,
-              padding: `20px`,
+              padding: `12px`,
             }}
           >
             <HeadlessModal.Panel
               style={{
-                overflow: `hidden`,
-                maxWidth: `448px`,
+                margin: `0 auto`,
                 width: `100%`,
-                marginLeft: `auto`,
-                marginRight: `auto`,
-                borderRadius: `16px`,
-                padding: `24px`,
+                maxWidth: `448px`,
+                padding: `32px`,
                 backgroundColor: `white`,
                 boxShadow: `rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px`,
                 transitionProperty: `opacity, transform`,
@@ -181,34 +196,37 @@ const App = () => {
               {({ isOpened }) =>
                 isOpened ? ( // This props will render/remove the Panel's content when the Modal open/close. If you don't want your Panel's content re-rendered, remove this props with the condition check.
                   <div>
-                    <h3
+                    <div
                       style={{
-                        fontWeight: 700,
-                        margin: `0 0 12px 0`,
-                        fontSize: `20px`,
-                        lineHeight: `28px`,
+                        margin: `0 0 16px 0`,
                       }}
                     >
-                      Lorem ipsum dolor sit amet
-                    </h3>
-                    <p style={{ margin: `0 0 12px 0` }}>
-                      Consectetur adipisicing elit. Atque accusantium natus quidem dolore error dicta, quaerat nihil
-                      cupiditate assumenda magnam eum, quibusdam ipsam quo beatae fugit illo labore velit repellendus?
-                    </p>
+                      <h3
+                        style={{
+                          margin: `0 0 8px 0`,
+                          fontSize: `30px`,
+                          lineHeight: `36px`,
+                          fontWeight: `bold`,
+                        }}
+                      >
+                        modal
+                      </h3>
+                      <p>
+                        lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ipsum perferendis! Quo
+                        omnis mollitia aperiam explicabo officia soluta, cumque, veritatis numquam doloribus distinctio
+                        quasi cum sed rerum nihil ipsa. Maxime?
+                      </p>
+                    </div>
                     <button
+                      onClick={handleClose}
                       style={{
                         cursor: `pointer`,
-                        borderWidth: 0,
-                        borderRadius: `8px`,
-                        padding: `8px 16px`,
-                        fontSize: `14px`,
-                        lineHeight: `20px`,
-                        fontWeight: 500,
-                        backgroundColor: `rgb(243 244 246 / 1)`,
+                        backgroundColor: `black`,
+                        padding: `10px 20px`,
+                        color: `white`,
                       }}
-                      onClick={handleClose}
                     >
-                      Close
+                      close
                     </button>
                   </div>
                 ) : null
@@ -228,15 +246,15 @@ export default App
 
 ## Props
 
-| Name             | Mandatory | Type                | Default value | Component              | Note                                                                                                                                                                                                        |
-| ---------------- | --------- | --------------------------------------------- | ------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| open | required  | boolean | false | HeadlessModal | The state of the Modal |
-| onClose | required | () => void | () => {} | HeadlessModal | Function handle to close the Modal |
-| clickOutsideToClose | optional | boolean | true | HeadlessModal | Enable / Disable closing the Modal when clicking outside the Modal panel |
-| container | optional | Element / DocumentFragment | document.body | HeadlessModal | The Modal will be rendered with the parent is `<body>` by default. You can choose the place where you want the Modal rendered by setting the Element to this props |
-| id | optional | string / null / undefined | undefined | HeadlessModal | A unique string or number to be used as the Modal's key |
-| enter | optional | { className?: string / null; style?: React.CSSProperties } | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on open (You can set the CSS using class or style inline) |
-| leave | optional | { className?: string / null; style?: React.CSSProperties } | {} | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on close (You can set the CSS using class or style inline) |
-| as | optional | React.ElementType | div | All | Set the tag HTML like whatever you want |
-| className | optional | string | null | All |  |
-| style | optional | React.CSSProperties | {} | All |  |
+| Name                | Mandatory | Type                                                       | Default value | Component                                   | Note                                                                                                                                                               |
+| ------------------- | --------- | ---------------------------------------------------------- | ------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| open                | required  | boolean                                                    | false         | HeadlessModal                               | The state of the Modal                                                                                                                                             |
+| onClose             | required  | () => void                                                 | () => {}      | HeadlessModal                               | Function handle to close the Modal                                                                                                                                 |
+| clickOutsideToClose | optional  | boolean                                                    | true          | HeadlessModal                               | Enable / Disable closing the Modal when clicking outside the Modal panel                                                                                           |
+| container           | optional  | Element / DocumentFragment                                 | document.body | HeadlessModal                               | The Modal will be rendered with the parent is `<body>` by default. You can choose the place where you want the Modal rendered by setting the Element to this props |
+| id                  | optional  | string / null / undefined                                  | undefined     | HeadlessModal                               | A unique string or number to be used as the Modal's key                                                                                                            |
+| enter               | optional  | { className?: string / null; style?: React.CSSProperties } | {}            | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on open (You can set the CSS using class or style inline)                                                                  |
+| leave               | optional  | { className?: string / null; style?: React.CSSProperties } | {}            | HeadlessModal.Backdrop, HeadlessModal.Panel | The CSS will be shown when the Modal is on close (You can set the CSS using class or style inline)                                                                 |
+| as                  | optional  | React.ElementType                                          | div           | All                                         | Set the tag HTML like whatever you want                                                                                                                            |
+| className           | optional  | string                                                     | null          | All                                         |                                                                                                                                                                    |
+| style               | optional  | React.CSSProperties                                        | {}            | All                                         |                                                                                                                                                                    |
