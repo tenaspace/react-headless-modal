@@ -116,28 +116,26 @@ const Modal = ({
   const firstOpen = useRef<IContextIHeadlessModal[`open`]>(open)
 
   useEffect(() => {
-    if (isClient) {
-      if (open) {
-        if (ref && ref.current) {
-          setIsOpened(true)
-          ref.current.style.display = ``
-        }
-      } else {
-        const timeout = setTimeout(
-          () => {
-            if (ref && ref.current) {
-              setIsOpened(false)
-              ref.current.style.display = `none`
-            }
-          },
-          transitionDurationBackdrop >= transitionDurationPanel ? transitionDurationBackdrop : transitionDurationPanel,
-        )
-        return () => {
-          clearTimeout(timeout)
-        }
+    if (open) {
+      if (ref && ref.current) {
+        setIsOpened(true)
+        ref.current.style.display = ``
+      }
+    } else {
+      const timeout = setTimeout(
+        () => {
+          if (ref && ref.current) {
+            setIsOpened(false)
+            ref.current.style.display = `none`
+          }
+        },
+        transitionDurationBackdrop >= transitionDurationPanel ? transitionDurationBackdrop : transitionDurationPanel,
+      )
+      return () => {
+        clearTimeout(timeout)
       }
     }
-  }, [isClient, ref, open, transitionDurationBackdrop, transitionDurationPanel])
+  }, [ref, open, transitionDurationBackdrop, transitionDurationPanel])
 
   useEventListener(`keydown`, (event) => {
     if (event.defaultPrevented) {
@@ -198,31 +196,27 @@ const Backdrop = ({
   const ref = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (isClient) {
-      setTransitionDurationBackdrop && setTransitionDurationBackdrop(getTransitionDuration(ref))
-    }
-  }, [isClient, ref, setTransitionDurationBackdrop])
+    setTransitionDurationBackdrop && setTransitionDurationBackdrop(getTransitionDuration(ref))
+  }, [ref, setTransitionDurationBackdrop])
 
   useEffect(() => {
-    if (isClient) {
-      if (open) {
-        const timeout = setTimeout(() => {
-          handleAnimate(ref, {
-            remove: leave,
-            add: enter,
-          })
-        }, TRANSITION_DURATION_DEFAULT)
-        return () => {
-          clearTimeout(timeout)
-        }
-      } else {
+    if (open) {
+      const timeout = setTimeout(() => {
         handleAnimate(ref, {
-          remove: enter,
-          add: leave,
+          remove: leave,
+          add: enter,
         })
+      }, TRANSITION_DURATION_DEFAULT)
+      return () => {
+        clearTimeout(timeout)
       }
+    } else {
+      handleAnimate(ref, {
+        remove: enter,
+        add: leave,
+      })
     }
-  }, [isClient, ref, open, enter, leave])
+  }, [ref, open, enter, leave])
 
   return isClient ? (
     <As ref={ref} className={className} style={style}>
@@ -247,31 +241,27 @@ const Panel = ({ children, as = `div`, className = null, style = {}, enter = {},
   useOnClickOutside(ref, clickOutsideToClose ? onClose : () => {})
 
   useEffect(() => {
-    if (isClient) {
-      setTransitionDurationPanel && setTransitionDurationPanel(getTransitionDuration(ref))
-    }
-  }, [isClient, ref, setTransitionDurationPanel])
+    setTransitionDurationPanel && setTransitionDurationPanel(getTransitionDuration(ref))
+  }, [ref, setTransitionDurationPanel])
 
   useEffect(() => {
-    if (isClient) {
-      if (open) {
-        const timeout = setTimeout(() => {
-          handleAnimate(ref, {
-            remove: leave,
-            add: enter,
-          })
-        }, TRANSITION_DURATION_DEFAULT)
-        return () => {
-          clearTimeout(timeout)
-        }
-      } else {
+    if (open) {
+      const timeout = setTimeout(() => {
         handleAnimate(ref, {
-          remove: enter,
-          add: leave,
+          remove: leave,
+          add: enter,
         })
+      }, TRANSITION_DURATION_DEFAULT)
+      return () => {
+        clearTimeout(timeout)
       }
+    } else {
+      handleAnimate(ref, {
+        remove: enter,
+        add: leave,
+      })
     }
-  }, [isClient, ref, open, enter, leave])
+  }, [ref, open, enter, leave])
 
   return isClient ? (
     <As ref={ref} className={className} style={style}>
