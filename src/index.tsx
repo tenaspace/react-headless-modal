@@ -37,7 +37,7 @@ const handleAnimate = (
     add?: IStyleAndClassName
   },
 ) => {
-  if (ref && ref.current) {
+  if (ref.current) {
     const { remove, add } = transition ?? {}
     const removeClassList = remove?.className ? remove.className.split(` `) : []
     const addClassList = add?.className ? add.className.split(` `) : []
@@ -52,7 +52,7 @@ const handleAnimate = (
 
 const getTransitionDuration = (ref: MutableRefObject<HTMLElement | null>) => {
   if (typeof window !== `undefined`) {
-    if (ref && ref.current) {
+    if (ref.current) {
       return parseFloat(window.getComputedStyle(ref.current).transitionDuration) * 1000
     }
   }
@@ -114,14 +114,14 @@ const Modal = ({
   useEffect(() => {
     if (isClient) {
       if (open) {
-        if (ref && ref.current) {
+        if (ref.current) {
           setIsOpened(true)
           ref.current.style.display = ``
         }
       } else {
         const timeout = setTimeout(
           () => {
-            if (ref && ref.current) {
+            if (ref.current) {
               setIsOpened(false)
               ref.current.style.display = `none`
             }
@@ -149,7 +149,7 @@ const Modal = ({
     }
   })
 
-  const firstStyle: CSSProperties | null = !firstOpen.current ? { display: `none` } : null
+  const firstStyle: CSSProperties | null = firstOpen.current ? null : { display: `none` }
 
   const As = as
 
