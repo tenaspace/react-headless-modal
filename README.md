@@ -1,6 +1,6 @@
 # @tenaspace/react-headless-modal
 
-This is an unstyled React component helping you to easy to make the Modal with your style.
+This is an unstyled React component that helps you to easily make the Modal with your style.
 
 ## Demo
 
